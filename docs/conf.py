@@ -19,6 +19,7 @@ import os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('../src/osha.oira/src'))
 sys.path.insert(0, os.path.abspath('../src/Euphorie/src'))
+sys.path.insert(0, os.path.abspath('~/.buildout/eggs'))
 
 # -- General configuration ------------------------------------------------
 
@@ -34,7 +35,7 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
-    'cloud_sptheme'
+    'repoze.sphinx.autointerface'
 ]
 
 autodoc_default_flags = [

@@ -65,7 +65,6 @@ Technical Information
 .. toctree::
   :hidden:
 
-  changes
 
 
 
@@ -80,13 +79,13 @@ Contents:
 
 
 
-API
-===
+Implementation
+==============
 
 .. toctree::
    :maxdepth: 2
 
-   api/index
+   implementation/index
 
 Indices and tables
 ==================
