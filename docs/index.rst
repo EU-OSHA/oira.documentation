@@ -79,7 +79,7 @@ API
 .. toctree::
    :maxdepth: 2
 
-    api/packages
+   api/packages
 
 Indices and tables
 ==================
