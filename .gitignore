@@ -8,3 +8,6 @@ Makefile
 make.bat
 html/
 doctrees/
+.mr.developer.cfg
+develop-eggs/
+src/
