@@ -3,6 +3,8 @@ bin/
 include/
 lib/
 local/
-docs/make.bat
 pip-selfcheck.json
-docs/build
+Makefile
+make.bat
+html/
+doctrees/
