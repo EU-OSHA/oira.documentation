@@ -5,3 +5,4 @@ lib/
 local/
 docs/make.bat
 pip-selfcheck.json
+docs/build
