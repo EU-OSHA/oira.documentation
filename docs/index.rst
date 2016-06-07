@@ -73,6 +73,14 @@ Contents:
 
 
 
+API
+===
+
+.. toctree::
+   :maxdepth: 2
+
+    api/packages
+
 Indices and tables
 ==================
 

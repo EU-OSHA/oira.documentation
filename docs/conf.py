@@ -14,11 +14,11 @@
 
 import sys
 import os
-
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#sys.path.insert(0, os.path.abspath('.'))
+import pdb; pdb.set_trace()
+sys.path.insert(0, os.path.abspath('../develop-eggs'))
 
 # -- General configuration ------------------------------------------------
 
@@ -37,6 +37,9 @@ extensions = [
     'cloud_sptheme'
 ]
 
+#autodoc_default_flags = [
+#            'private-members',
+#            ]
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
