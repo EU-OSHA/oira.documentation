@@ -7,6 +7,14 @@
 :mod:`OiRA` -- Online Interactive Risk Assessment tool
 ******************************************************
 
+ToDo List
+=========
+
+This must be empty before we are done.
+
+.. todolist::
+
+
 About
 =====
 
@@ -39,7 +47,6 @@ multiple versions for a OiRA tools. Only a single version of an OiRA tool can be
 at any point in time.
 
 
-.. todolist::
 
 Technical Information
 =====================
@@ -79,7 +86,7 @@ API
 .. toctree::
    :maxdepth: 2
 
-   api/packages
+   api/index
 
 Indices and tables
 ==================
