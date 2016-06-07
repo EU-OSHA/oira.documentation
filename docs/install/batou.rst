@@ -3,4 +3,6 @@
 Batou-based installation of OiRA
 ================================
 
-t.b.d
+.. todo::
+
+  Transfer the individual manual installation instructions to the context of batou.
