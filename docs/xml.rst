@@ -1,6 +1,11 @@
 XML survey format
 =================
 
+.. todo::
+
+  This file was copied from Wichert's original documentation: https://github.com/euphorie/Euphorie/blob/master/docs/xml.rst
+  We need to find the appropriate place in the new structure.
+
 Euphorie supports import and exporting of surveys via a simple `XML
 <http://en.wikipedia.org/wiki/XML>`_ format. The document used is similar to the
 structure of a survey as it appears in an Euphorie site. This chapter assumes
