@@ -35,7 +35,8 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
-    'repoze.sphinx.autointerface'
+    'repoze.sphinx.autointerface',
+    'sphinx.ext.graphviz',
 ]
 
 autodoc_default_flags = [

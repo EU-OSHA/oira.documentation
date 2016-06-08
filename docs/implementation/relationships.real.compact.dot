@@ -1,0 +1,123 @@
+// dot 2.38.0 on Linux 4.4.10
+// SchemaSpy rev 590
+digraph "compactRelationshipsDiagram" {
+  graph [
+    rankdir="RL"
+    bgcolor="#f7f7f7"
+    labeljust="l"
+    nodesep="0.18"
+    ranksep="0.46"
+    fontname="Helvetica"
+    fontsize="11"
+  ];
+  node [
+    fontname="Helvetica"
+    fontsize="11"
+    shape="plaintext"
+  ];
+  edge [
+    arrowsize="0.8"
+  ];
+  "account" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account</TD></TR>
+      <TR><TD PORT="id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">id</TD></TR>
+      <TR><TD PORT="loginname" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">loginname</TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+    </TABLE>>
+    tooltip="account"
+  ];
+  "account_change" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_change</TD></TR>
+      <TR><TD PORT="id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">id</TD></TR>
+      <TR><TD PORT="account_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">account_id</TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+    </TABLE>>
+    tooltip="account_change"
+  ];
+  "action_plan" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">action_plan</TD></TR>
+      <TR><TD PORT="id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">id</TD></TR>
+      <TR><TD PORT="risk_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">risk_id</TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+    </TABLE>>
+    tooltip="action_plan"
+  ];
+  "company" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">company</TD></TR>
+      <TR><TD PORT="id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">id</TD></TR>
+      <TR><TD PORT="session_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">session_id</TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+    </TABLE>>
+    tooltip="company"
+  ];
+  "dutch_company" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">dutch_company</TD></TR>
+      <TR><TD PORT="id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">id</TD></TR>
+      <TR><TD PORT="session_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">session_id</TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+    </TABLE>>
+    tooltip="dutch_company"
+  ];
+  "module" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">module</TD></TR>
+      <TR><TD PORT="id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">id</TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+    </TABLE>>
+    tooltip="module"
+  ];
+  "risk" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">risk</TD></TR>
+      <TR><TD PORT="id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">id</TD></TR>
+      <TR><TD PORT="risk_type" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">risk_type</TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+    </TABLE>>
+    tooltip="risk"
+  ];
+  "session" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">session</TD></TR>
+      <TR><TD PORT="id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">id</TD></TR>
+      <TR><TD PORT="account_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">account_id</TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+    </TABLE>>
+    tooltip="session"
+  ];
+  "tree" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">tree</TD></TR>
+      <TR><TD PORT="id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">id</TD></TR>
+      <TR><TD PORT="session_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">session_id</TD></TR>
+      <TR><TD PORT="parent_id" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">parent_id</TD></TR>
+      <TR><TD PORT="type" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">type</TD></TR>
+      <TR><TD PORT="path" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">path</TD></TR>
+      <TR><TD PORT="depth" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">depth</TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+    </TABLE>>
+    tooltip="tree"
+  ];
+  "account_change":"account_id":w -> "account":"id":e [arrowhead=none dir=back arrowtail=teeodot];
+  "action_plan":"risk_id":w -> "tree":"id":e [arrowhead=none dir=back arrowtail=crowodot];
+  "company":"session_id":w -> "session":"id":e [arrowhead=none dir=back arrowtail=crowodot];
+  "dutch_company":"session_id":w -> "session":"id":e [arrowhead=none dir=back arrowtail=crowodot];
+  "module":"id":w -> "tree":"id":e [arrowhead=none dir=back arrowtail=teeodot];
+  "risk":"id":w -> "tree":"id":e [arrowhead=none dir=back arrowtail=teeodot];
+  "session":"account_id":w -> "account":"id":e [arrowhead=none dir=back arrowtail=crowodot];
+  "tree":"parent_id":w -> "tree":"id":e [arrowhead=none dir=back arrowtail=crowodot];
+  "tree":"session_id":w -> "session":"id":e [arrowhead=none dir=back arrowtail=crowodot];
+}
