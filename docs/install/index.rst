@@ -13,7 +13,7 @@ please refer to :ref:`manual_installation`.
 Getting all components to work together seamlessly, spread over different
 (virtual) hosts, is not trivial, especially if the required configuration is
 kept is many differnt locations. Therefore, the production and staging installation
-of OiRA make use of the configuration- and deployment tool "batou". This is
+of OiRA make use of the configuration- and deployment tool `batou`_. This is
 described in :ref:`batou`.
 
 
@@ -22,3 +22,6 @@ described in :ref:`batou`.
 
    manual
    batou
+
+
+.. _batou: https://batou.readthedocs.io/en/latest/
