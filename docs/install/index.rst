@@ -22,6 +22,7 @@ described in :ref:`batou`.
 
    manual
    batou
+   components/index
 
 
 .. _batou: https://batou.readthedocs.io/en/latest/

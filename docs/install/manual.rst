@@ -16,6 +16,8 @@ Development files required on the host operating system:
 
 e.g. on Debian/Ubuntu: ``sudo apt-get install libffi-dev``
 
+.. _plone_installation:
+
 Plone installation
 ------------------
 
@@ -103,6 +105,8 @@ Google analytics
 Euphorie includes complete Google Analytics support. However due to data protection
 regulations, this feature is not available in OiRA.
 
+.. _piwik:
+
 Web analytics (Piwik)
 ---------------------
 
@@ -114,7 +118,7 @@ from the Piwik installation) needs to be pasted into the field "Javascript for
 web statistics support" of the Plone installation.
 
 
-
+.. _sql_database:
 
 SQL database
 ------------
@@ -152,6 +156,8 @@ command::
     $ bin/buildout
     $ bin/instance initdb
 
+
+.. _virtual_hosting:
 
 Virtual hosting
 ---------------
@@ -209,6 +215,9 @@ You will also need to configure the URL for the client in the ``euphorie.ini`` f
 
   [euphorie]
   client=http://client.oiraexample.com
+
+
+.. _pdf_printing:
 
 PDF printing
 ------------

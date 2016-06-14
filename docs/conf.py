@@ -20,6 +20,8 @@ import os
 sys.path.insert(0, os.path.abspath('../src/osha.oira/src'))
 sys.path.insert(0, os.path.abspath('../src/Euphorie/src'))
 sys.path.insert(0, os.path.abspath('~/.buildout/eggs'))
+sys.path.insert(0, os.path.abspath('../src/batou/src'))
+sys.path.insert(0, os.path.abspath('./install'))
 
 # -- General configuration ------------------------------------------------
 
