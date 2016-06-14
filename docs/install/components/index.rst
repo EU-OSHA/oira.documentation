@@ -40,3 +40,72 @@ Docs
 ----
 
 .. autoclass:: components.docs.Docs
+
+
+HAProxy
+-------
+
+.. autoclass:: components.haproxy.HAProxy
+
+
+Logrotate
+---------
+
+.. autoclass:: batou.lib.logrotate.Logrotate
+
+
+Nagios
+------
+
+.. autoclass:: batou.lib.nagios.NRPEHost
+.. autoclass:: batou.lib.nagios.NagiosServer
+
+
+Nginx
+-----
+
+The Nginx component takes care of :ref:`virtual_hosting`.
+
+.. autoclass:: components.nginx.Nginx
+
+
+NRPE
+----
+
+.. autoclass:: batou.lib.nagios.NRPEHost
+
+
+Postgres
+--------
+
+Postgres provides the :ref:`sql_database`.
+
+.. autoclass:: components.postgres.Postgres
+
+
+Settings
+--------
+
+.. autoclass:: components.settings.Settings
+
+
+SmartprintNG
+------------
+
+The SmartprintNG component is responsible for :ref:`pdf_printing`.
+
+.. autoclass:: components.smartprintng.SmartprintNG
+
+
+Supervisor
+----------
+
+The Supervisor component manages running processes.
+
+.. autoclass:: components.supervisor.Supervisor
+
+
+Varnish
+-------
+
+.. autoclass:: components.varnish.Varnish
