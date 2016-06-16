@@ -231,6 +231,24 @@ in `euphorie.ini`::
   smartprintng_url=http://123.45.67.89:6543
 
 
+.. _usage_statistics:
+
+Usage Statistics
+----------------
+
+To generate usage statistics reports an `Apache Tomcat`_ server with the `BIRT`_
+webapp needs to be set up. It must be configured to serve the reports in the
+`oira.reports`_ package. Its base URL needs to be made available via the
+osha.oira product configuration. This can be done through buildout with the
+`zope-conf-additional` option::
+
+    [instance]
+    ...
+    zope-conf-additional =
+        <product-config osha.oira>
+            birt.report_url http://birt.oiraexample.com/birt/frameset?__pageoverflow=0&__asattachment=true&__overwrite=false&sector=%25
+        </product-config>
+    
 
 
 
@@ -242,4 +260,6 @@ in `euphorie.ini`::
 .. _psycopg: http://initd.org/psycopg/
 .. _zopyx.smartprintng.server: https://pypi.python.org/pypi/zopyx.smartprintng.server
 .. _Prince XML: http://www.princexml.com/
-
+.. _oira.reports: https://github.com/EU-OSHA/oira.reports
+.. _Apache Tomcat: http://tomcat.apache.org/tomcat-6.0-doc/index.html
+.. _BIRT: http://www.eclipse.org/birt/documentation/

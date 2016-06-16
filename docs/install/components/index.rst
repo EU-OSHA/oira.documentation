@@ -25,7 +25,7 @@ Zeo allows to share the ZODB between multiple Zope instances.
 Birt
 ----
 
-The Birt component provides reporting capabilities for usage statistics.
+The Birt component provides reporting capabilities for :ref:`usage_statistics`.
 
 .. autoclass:: components.birt.Birt
 
