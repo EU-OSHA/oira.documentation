@@ -1,1 +1,0 @@
-../../../src/oira.batou/components/zope/component.py

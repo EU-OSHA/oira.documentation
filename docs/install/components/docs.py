@@ -1,1 +1,0 @@
-../../../src/oira.batou/components/docs/component.py

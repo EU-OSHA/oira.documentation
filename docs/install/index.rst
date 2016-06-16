@@ -18,11 +18,10 @@ described in :ref:`batou`.
 
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    manual
-   batou
-   components/index
+   batou/index
 
 
 .. _batou: https://batou.readthedocs.io/en/latest/
