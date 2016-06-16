@@ -55,6 +55,9 @@ To start a remote deployment, run ``batou remote``::
 
 where <environment> is the name of one of the files in the environments/ directory (with or without the *.cfg* extension), e.g. *production*. For a local deployment use ``batou local`` instead.
 
+For the components that are defined by oira.batou see :ref:`batou_components`.
+
+
 .. todo::
 
     Do we document what configuration files need to be referenced manually if you're not on the gocept platform?
