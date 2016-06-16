@@ -18,11 +18,11 @@ This must be empty before we are done.
 About
 =====
 
-OIRA is a tool for risk assessment. It is was developed by `SYSLAB`_ and `TNO`_
+OIRA is a tool for risk assessment. It is developed by `SYSLAB`_ and `TNO`_
 in cooperation with `Simplon`_ and `Cornelis Kolbach`_ in commission of
 `The European Agency for Safety and Health at Work`_ as part of the
 `Healthy Workplaces`_ campaign. The software base package is called `Euphorie`_
-and is used also by the Dutch `RIE`_ project.
+and is also used by the Dutch `RIE`_ project.
 
 .. _syslab: http://syslab.com/
 .. _TNO: http://www.tno.nl/index.cfm?Taal=2
@@ -43,7 +43,7 @@ industry.
 
 Each sector organisation can have one or more OiRA tools published simultaneously.
 In order to facilitate development and testing of OIRA tools the system supports
-multiple versions for a OiRA tools. Only a single version of an OiRA tool can be public
+multiple versions for OiRA tools. Only a single version of an OiRA tool can be public
 at any point in time.
 
 

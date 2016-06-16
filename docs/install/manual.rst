@@ -76,28 +76,28 @@ You need to tell buildout where to find this configuration::
 
 Some notable options are:
 
-   +----------------------------+------------------------------------------------+
-   |options                     | Description                                    |
-   +============================+================================================+
-   |``client``                  | URL for the client (see also                   |
-   |                            | `Virtual hosting`_).                           |
-   +----------------------------+------------------------------------------------+
-   |``library``                 | Path (inside Plone) to a sectors that          |
-   |                            | should be used as the Library of OiRA  tools.  |
-   +----------------------------+------------------------------------------------+
-   |``max_login_attempts``      | Number: after how many failed login attempts   |
-   |                            | in the client the user account gets locked.    |
-   +----------------------------+------------------------------------------------+
-   |``allow_guest_accounts``    | Boolean: If enabled the feature for guest      |
-   |                            | login is available in the client.              |
-   +----------------------------+------------------------------------------------+
-   |``allow_user_defined_risks``| Boolean: If enabled the feature for creating   |
-   |                            | custom riks is available in the client.        |
-   +----------------------------+------------------------------------------------+
-   |``smartprintng_url``        | URL (including port) of the service used for   |
-   |                            | creating PDF prints                            |
-   |                            | (see also `PDF printing`_).                    |
-   +----------------------------+------------------------------------------------+
+   +------------------------------+-----------------------------------------------+
+   | options                      | Description                                   |
+   +==============================+===============================================+
+   | ``client``                   | URL for the client (see also                  |
+   |                              | `Virtual hosting`_).                          |
+   +------------------------------+-----------------------------------------------+
+   | ``library``                  | Path (inside Plone) to a sector that          |
+   |                              | should be used as the Library of OiRA  tools. |
+   +------------------------------+-----------------------------------------------+
+   | ``max_login_attempts``       | Number: after how many failed login attempts  |
+   |                              | in the client the user account gets locked.   |
+   +------------------------------+-----------------------------------------------+
+   | ``allow_guest_accounts``     | Boolean: If enabled the feature for guest     |
+   |                              | login is available in the client.             |
+   +------------------------------+-----------------------------------------------+
+   | ``allow_user_defined_risks`` | Boolean: If enabled the feature for creating  |
+   |                              | custom riks is available in the client.       |
+   +------------------------------+-----------------------------------------------+
+   | ``smartprintng_url``         | URL (including port) of the service used for  |
+   |                              | creating PDF prints                           |
+   |                              | (see also `PDF printing`_).                   |
+   +------------------------------+-----------------------------------------------+
 
 Google analytics
 ----------------
@@ -111,9 +111,9 @@ Web analytics (Piwik)
 ---------------------
 
 `Plone by default can be configured <http://docs.plone.org/adapt-and-extend/config/site.html>`_
-to include on every page a block of Javascript code for logging information to a
+to include a block of Javascript code on every page for logging information to a
 web analytics tool such as Piwik. The OiRA client and admin interface make use of
-this option. That means to enable Piwik tracking, the appropriate Javascript (available)
+this option. That means to enable Piwik tracking, the appropriate Javascript (available
 from the Piwik installation) needs to be pasted into the field "Javascript for
 web statistics support" of the Plone installation.
 
@@ -124,7 +124,7 @@ SQL database
 ------------
 
 OIRA uses a SQL database to store information for users of the client. Any
-SQL database supported by SQLALchemy_ should work. If you have selected a
+SQL database supported by SQLAlchemy_ should work. If you have selected a
 database you will need to configure it in ``buildout.cfg``. For example if
 you use postgres you will first need to make sure that the psycopg_ driver
 is installed by adding it to the *eggs* section::
@@ -135,7 +135,7 @@ is installed by adding it to the *eggs* section::
       osha.oira
       psycopg2
 
-next you need to configure the database connection information. This requires
+Next you need to configure the database connection information. This requires
 a somewhat verbose statement in the *instance* section of ``buildout.cfg``::
 
   [instance]
@@ -147,10 +147,10 @@ a somewhat verbose statement in the *instance* section of ``buildout.cfg``::
          <db:session engine="session" />
      </configure>
 
-Make sure The ``url`` parameter is correct for the database you want to use.
+Make sure the ``url`` parameter is correct for the database you want to use.
 It uses the standard SQLAlchemy connection URI format.
 
-To setup the database you must run buildout and run the database initialisation
+To set up the database you must run buildout and run the database initialisation
 command::
 
     $ bin/buildout
@@ -163,10 +163,10 @@ Virtual hosting
 ---------------
 
 Euphorie requires two separate virtual hosts: one host for the client, and one
-for CMS tasks. It is common to use ``client.oiraexample.com`` as hostname for the
-client and ``admin.oiraexample.com`` as hostname for the CMS. The standard
-method for configuring virtual hosting for Plone sites apply here as well. Here
-is an example nginx configuration::
+for CMS tasks. It is common to use ``client`` as hostname for the client (e.g.
+``client.oiraexample.com``) and ``admin`` as hostname for the CMS (e.g.
+``admin.oiraexample.com``). The standard method for configuring virtual hosting
+for Plone sites apply here as well. Here is an example nginx configuration::
 
   server {
       listen *:80;
