@@ -85,7 +85,6 @@ Implementation
    :maxdepth: 2
 
    implementation/index
-   implementation/database
 
 Indices and tables
 ==================
