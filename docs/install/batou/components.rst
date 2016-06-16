@@ -25,13 +25,21 @@ Zeo allows to share the ZODB between multiple Zope instances.
 Birt
 ----
 
-The Birt component provides reporting capabilities for :ref:`usage_statistics`.
+External dependencies:
+
+* Apache Tomcat 6
+
+The Birt component provides reporting capabilities for :ref:`usage_statistics`. It requires Apache Tomcat to be installed in the system. The BIRT webapp and the report files are automatically downloaded and installed by the component.
 
 .. autoclass:: components.birt.Birt
 
 
 Crontab
 -------
+
+External dependencies:
+
+* Cron
 
 .. autoclass:: batou.lib.cron.CronTab
 
@@ -45,17 +53,31 @@ Docs
 HAProxy
 -------
 
+External dependencies:
+
+* HAProxy
+
+The HAProxy component configures the load balancer.
+
 .. autoclass:: components.haproxy.HAProxy
 
 
 Logrotate
 ---------
 
+External dependencies:
+
+* Logrotate
+
 .. autoclass:: batou.lib.logrotate.Logrotate
 
 
 Nagios
 ------
+
+External dependencies:
+
+* Nagios
 
 .. autoclass:: batou.lib.nagios.NRPEHost
 .. autoclass:: batou.lib.nagios.NagiosServer
@@ -64,19 +86,22 @@ Nagios
 Nginx
 -----
 
+External dependencies:
+
+* Nginx
+
 The Nginx component takes care of :ref:`virtual_hosting`.
 
 .. autoclass:: components.nginx.Nginx
 
 
-NRPE
-----
-
-.. autoclass:: batou.lib.nagios.NRPEHost
-
-
 Postgres
 --------
+
+External dependencies:
+
+* PostgreSQL Server 9.x
+* PostgreSQL JDBC driver
 
 Postgres provides the :ref:`sql_database`.
 
@@ -107,5 +132,9 @@ The Supervisor component manages running processes.
 
 Varnish
 -------
+
+External dependencies:
+
+* Varnish
 
 .. autoclass:: components.varnish.Varnish

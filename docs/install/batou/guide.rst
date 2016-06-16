@@ -17,7 +17,7 @@ The host(s) you are deploying to will need the following installed:
 * libffi (Foreign Function Interface library development files),
   e.g. on Debian/Ubuntu: ``sudo apt-get install libffi-dev``
 
-Depending on the components selected in the batou environment (see below) you may also need some or all of the following:
+Depending on the :ref:`components <batou_components>` selected in the batou environment (see below) you may also need some or all of the following:
 
 * Nginx
 * Varnish
@@ -29,7 +29,6 @@ Depending on the components selected in the batou environment (see below) you ma
 * Mercurial
 * Subversion
 * SQLite
-* Java
 
 
 Setup
