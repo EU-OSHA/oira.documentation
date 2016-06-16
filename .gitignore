@@ -12,3 +12,5 @@ doctrees/
 develop-eggs/
 src/
 parts/
+*.pyc
+.*.sw[op]
