@@ -8,10 +8,6 @@ Preparation
 
 As batou is a remote deployment tool, the machine you are deploying from is not necessarily the machine you are deploying to. We will call the machine you are deploying from your local machine. It will need network access (ssh in particular) to the host(s) you will be deploying to. Make sure this machine fulfils the `batou requirements`_.
 
-.. todo::
-
-    Mention the gocept platform?
-
 The host(s) you are deploying to will need the following installed:
 
 * libffi (Foreign Function Interface library development files),
@@ -38,11 +34,7 @@ Start by getting the `oira.batou deployment code`_ onto your local machine by cl
 
     $ hg clone ssh://hg@bitbucket.org/gocept/oira.batou
 
-The repository contains definitions of the individual OiRA components as well as environment definitions that assign combinations of components to hosts. If you want to create a new environment or modify an existing one please refer to the `oira.batou README`_ and the `batou quickstart`_.
-
-.. todo::
-
-    Do we add more information about creating/modifying a batou env?
+The repository contains definitions of the individual OiRA components as well as environment definitions that assign combinations of components to hosts. If you want to create a new environment or modify an existing one please refer to the `oira.batou README`_ and the `batou quickstart`_. When creating a new development environment you can take one of the existing ones (``oira.batou/environments/dev-*.cfg``) as a base.
 
 To start a remote deployment, run ``batou remote``::
 
@@ -52,11 +44,6 @@ To start a remote deployment, run ``batou remote``::
 where <environment> is the name of one of the files in the environments/ directory (with or without the *.cfg* extension), e.g. *production*. For a local deployment use ``batou local`` instead.
 
 For the components that are defined by oira.batou see :ref:`batou_components`.
-
-
-.. todo::
-
-    Do we document what configuration files need to be referenced manually if you're not on the gocept platform?
 
 
 .. _oira.batou deployment code: https://bitbucket.org/oshahosting/oira.batou

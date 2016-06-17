@@ -3,6 +3,14 @@
 Batou Components
 ================
 
+Some of these components are self-sufficient in that they download, build and configure all parts of the software that they manage. Others rely on software being installed in the operating system and only provide configuration files. (See the individual component descriptions for their dependencies.) The latter components may make assumptions about where in the file system to place configuration files. When deploying to a system with a different directory structure it may make sense to use the sandbox feature by adding this to the batou environment::
+
+    [vfs]
+    sandbox = Developer
+
+This will rewrite all absolute paths to be relative to a sandbox directory (``oira.batou/work/_/``). You will need to make sure to copy or link to these files yourself so that the external software can find them.
+
+
 Zope
 ----
 
