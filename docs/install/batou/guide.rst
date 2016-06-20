@@ -10,6 +10,10 @@ As batou is a remote deployment tool, the machine you are deploying from is not 
 
 The host(s) you are deploying to will need the following installed:
 
+.. todo::
+
+    Clarify what libffi is needed for (Zope?)
+
 * libffi (Foreign Function Interface library development files),
   e.g. on Debian/Ubuntu: ``sudo apt-get install libffi-dev``
 
