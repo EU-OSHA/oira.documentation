@@ -13,7 +13,7 @@ Packages
 .. toctree::
    :maxdepth: 2
 
-   euphorie/index
+   Euphorie <euphorie/index>
    oira/index
 
 

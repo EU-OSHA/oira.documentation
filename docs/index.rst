@@ -66,23 +66,11 @@ Technical Information
 
 
 
-
-
-Welcome to OiRA Documentation's documentation!
-==============================================
-
-Contents:
-
-.. toctree::
-   :maxdepth: 2
-
-
-
 Implementation
 ==============
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    implementation/index
 
