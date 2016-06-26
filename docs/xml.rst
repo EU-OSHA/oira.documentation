@@ -6,10 +6,10 @@ XML survey format
   This file was copied from Wichert's original documentation: https://github.com/euphorie/Euphorie/blob/master/docs/xml.rst
   We need to find the appropriate place in the new structure.
 
-Euphorie supports import and exporting of surveys via a simple `XML
+Euphorie supports import and exporting of OiRA tools via a simple `XML
 <http://en.wikipedia.org/wiki/XML>`_ format. The document used is similar to the
-structure of a survey as it appears in an Euphorie site. This chapter assumes
-that you are already familiar with the basic survey structure.
+structure of an OiRA tool as it appears in a Euphorie site. This chapter assumes
+that you are already familiar with the basic structure of OiRA tools.
 
 The current XML format is 1.0 and uses an XML namespace of
 ``http://xml.simplon.biz/euphorie/survey/1.0``.
@@ -38,7 +38,7 @@ The root of the XML file is the `sector` element.
    +--------------+-----------+-------------------------------------------+
    | ``logo``     | No        | Inline image with sector logo             |
    +--------------+-----------+-------------------------------------------+
-   | ``survey``   | Yes       | Survey                                    |
+   | ``survey``   | Yes       | The actual OiRA tool                      |
    +--------------+-----------+-------------------------------------------+
 
 The ``account``, ``contact`` and ``logo`` elements are only used when a new
@@ -69,19 +69,24 @@ Example
 survey element
 --------------
 
-The ``survey`` element defines a survey. It contains all the profile questions,
-modules, risks, etc. that make up a survey.
+The ``survey`` element defines an OiRA tool. It contains all the profile questions,
+modules, risks, etc. that make up an OiRA tool.
 
 .. table:: Allowed elements in ``survey``
 
    +-------------------------+-----------+--------------------------------------+
    | Element                 | Mandatory | Description                          |
    +=========================+===========+======================================+
-   | ``title``               | Yes       | Title of this survey                 |
+   | ``title``               | Yes       | Title of this OiRA tool              |
+   +-------------------------+-----------+--------------------------------------+
+   | ``introduction``        | No        | General introduction text            |
    +-------------------------+-----------+--------------------------------------+
    | ``classification-code`` | No        | NACE-based classification code       |
    +-------------------------+-----------+--------------------------------------+
-   | ``language``            | Yes       | Language used in the survey          |
+   | ``language``            | Yes       | Language used in the OiRA tool       |
+   +-------------------------+-----------+--------------------------------------+
+   | ``evaluation-algorithm``| No        | Can be "kinney" (default 3 criteria) |
+   |                         |           | or "french" (2 criteria)             |
    +-------------------------+-----------+--------------------------------------+
    | ``evaluation-optional`` | No        | Inline image with sector logo        |
    +-------------------------+-----------+--------------------------------------+
@@ -107,6 +112,7 @@ Example
      <title>Software development</title>
      <classification-code>A.1.2.3</classification-code>
      <language>en</language>
+     <evaluation-algorithm>kinney</evaluation-algorithm>
      <evaluation-optional>true</evaluation-optional>
      <profile-question>
        ...
@@ -128,20 +134,29 @@ very similar to the ``module`` element.
 
 .. table:: Allowed elements in ``profile-question``
 
-   +-------------------------+-----------+-------------------------------------------+
-   | Element                 | Mandatory | Description                               |
-   +=========================+===========+===========================================+
-   | ``title``               | Yes       | Title of this profile question            |
-   +-------------------------+-----------+-------------------------------------------+
-   | ``description``         | No        | Description (HTML)                        |
-   +-------------------------+-----------+-------------------------------------------+
-   | ``question``            | Yes       | Question asked to determine use of profile|
-   |                         |           | section in survey.                        |
-   +-------------------------+-----------+-------------------------------------------+
-   | ``module``              | No        | A module (can be repeated)                |
-   +-------------------------+-----------+-------------------------------------------+
-   | ``risk``                | No        | A risk (can be repeated)                  |
-   +-------------------------+-----------+-------------------------------------------+
+   +-------------------------------+-----------+------------------------------------------------+
+   | Element                       | Mandatory | Description                                    |
+   +===============================+===========+================================================+
+   | ``title``                     | Yes       | Title of this profile question                 |
+   +-------------------------------+-----------+------------------------------------------------+
+   | ``description``               | No        | Description (HTML)                             |
+   +-------------------------------+-----------+------------------------------------------------+
+   | ``question``                  | Yes       | Question asked to determine use of profile     |
+   |                               |           | section in survey.                             |
+   +-------------------------------+-----------+------------------------------------------------+
+   | ``label-multiple-present``    | Yes       | This question must ask the user if the service |
+   |                               |           | is offered in more than one location.          |
+   +-------------------------------+-----------+------------------------------------------------+
+   | ``label-single-occurance``    | Yes       | This must ask the user for the name of the     |
+   |                               |           | relevant location.                             |
+   +-------------------------------+-----------+------------------------------------------------+
+   | ``label-multiple-occurances`` | Yes       | This must ask the user for the names of all    |
+   |                               |           | relevant locations.                            |
+   +-------------------------------+-----------+------------------------------------------------+
+   | ``module``                    | No        | A module (can be repeated)                     |
+   +-------------------------------+-----------+------------------------------------------------+
+   | ``risk``                      | No        | A risk (can be repeated)                       |
+   +-------------------------------+-----------+------------------------------------------------+
 
 HTML tags used in the description must be properly escaped or wrapped in a CDATA block.
 
@@ -155,11 +170,13 @@ Example
 .. code-block:: xml
 
    <profile-question>
-     <title>Mobile access</title>
-     <question>Do your employees work remotely?</question>
-     <description>&lt;p&gt;Working out of the office can introduce many
-       new risks that may not be under your direct control.&lt;/p&gt;
-     </description>
+      <title>Commercial manned guarding</title>
+      <question>Does your organisation provide commercial manned guarding?</question>
+      <description>This module focuses on &lt;strong&gt;commercial manned guarding&lt;/strong&gt;
+      </description>
+      <label-multiple-present>Do you offer this service in multiple locations?</label-multiple-present>
+      <label-single-occurance>Please enter a name for the location you would like to assess.</label-single-occurance>
+      <label-multiple-occurances>Please enter the name for each location you would like to assess.</label-multiple-occurances>
      <module>
         ...
      </module>
@@ -187,7 +204,7 @@ is very similar to the ``profile-question`` element.
    | ``question``            | Yes/No    | Question asked to determine if module     |
    |                         |           | should be skipped                         |
    +-------------------------+-----------+-------------------------------------------+
-   | ``solution-direction``  | Yes       | Solution suggestions for action plan     e|
+   | ``solution-direction``  | Yes       | Solution suggestions for the action plan  |
    |                         |           | phase (HTML)                              |
    +-------------------------+-----------+-------------------------------------------+
    | ``module``              | No        | A module (can be repeated)                |
@@ -234,17 +251,18 @@ Example
 risk element
 -------------
 
-The risk element is the workhorse of a survey: it defines a single risk.
+The risk element is the workhorse of an OiRA tool: it defines a single risk.
 
 .. table:: Allowed elements in ``risk``
 
    +-------------------------+-----------+-----------------------------------+
    | Element                 | Mandatory | Description                       |
    +=========================+===========+===================================+
-   | ``title``               | Yes       | Title of this profile question    |
+   | ``title``               | Yes       | The 'positive statement' shown if |
+   |                         | Yes       | everything is OK                  |
    +-------------------------+-----------+-----------------------------------+
-   | ``problem-description`` | Yes       | Problem description shown if risk |
-   |                         |           | is present (HTML)                 |
+   | ``problem-description`` | Yes       | Problem description shown if the  |
+   |                         |           | risk is present (HTML)            |
    +-------------------------+-----------+-----------------------------------+
    | ``description``         | Yes       | Description (HTML)                |
    +-------------------------+-----------+-----------------------------------+
@@ -258,7 +276,7 @@ The risk element is the workhorse of a survey: it defines a single risk.
    +-------------------------+-----------+-----------------------------------+
 
 The type of risk is identified with a mandatory ``type`` attribute. This can be
-set to ``risk``, ``policy`` or ``top5``. For policy and top-5 risks the
+set to ``risk``, ``policy`` or ``top5`` (priority). For policy and priority risks the
 ``evaluation-method`` and ``default-*`` are not used.
 
 For risks of type ``risk`` the ``evaluation-method`` method element must be
@@ -286,12 +304,12 @@ Example
 .. code-block:: xml
 
    <risk type="risk">
-     <title>Are your desks at the right height?</title>
+     <title>Lifts and escalators are in good condition and are properly maintained</title>
      <problem-description>
-       &lt;p&gt;Not all desks have the correct height.&lt;/p&gt;
+       &lt;p&gt;Lifts and escalators are not in good condition and might not be properly maintained.&lt;/p&gt;
      </problem-description>
      <description>
-       &lt;p&gt;The right height is important to prevent back problems.&lt;/p&gt;
+       &lt;p&gt;Lifts and escalators are essential to the smooth running of a building and to operate reliably they must be regularly maintained.&lt;/p&gt;&lt;p&gt;Lifts require regular lift maintenance to comply with the latest lift standards and legislation, to maintain performance levels and to minimise downtime on lifts and escalators.&lt;/p&gt;
      </description>
      <evaluation-method default-probability="small" default-frequency="regular"
         default-effect="high">calculated</evaluation-method>
@@ -308,17 +326,17 @@ Standard solutions for a risk are defined using the ``solution`` element
 
 .. table:: Allowed elements in ``solution``
 
-   +-------------------------+-----------+-------------------------------+
-   | Element                 | Mandatory | Description                   |
-   +=========================+===========+===============================+
-   | ``description``         | Yes       | Description                   |
-   +-------------------------+-----------+-------------------------------+
-   | ``action-plan``         | No        | Text for the action plan      |
-   +-------------------------+-----------+-------------------------------+
-   | ``prevention-plan``     | No        | Text for the prevention plan  |
-   +-------------------------+-----------+-------------------------------+
-   | ``requirements``        | No        | Text for the requirements     |
-   +-------------------------+-----------+-------------------------------+
+   +-------------------------+-----------+--------------------------------------------------------+
+   | Element                 | Mandatory | Description                                            |
+   +=========================+===========+========================================================+
+   | ``description``         | Yes       | Description                                            |
+   +-------------------------+-----------+--------------------------------------------------------+
+   | ``action-plan``         | No        | General approach (to eliminate or reduce the risk)     |
+   +-------------------------+-----------+--------------------------------------------------------+
+   | ``prevention-plan``     | No        | Specific action(s) required to implement this approach |
+   +-------------------------+-----------+--------------------------------------------------------+
+   | ``requirements``        | No        | Specific action(s) required to implement this approach |
+   +-------------------------+-----------+--------------------------------------------------------+
 
 
 Example
@@ -327,8 +345,9 @@ Example
 .. code-block:: xml
 
    <solution>
-     <description>Use height-adjustable desks</description>
-     <action-plan>Order height-adjustable desks for desk workers.</action-plan>
+     <description>Make sure that the building is in good condition and has the necessary facilities </description>
+     <action-plan>Reduce the risk by making sure that the building is in good condition and has the necessary facilities.</action-plan>
+     <prevention-plan>Properly maintain the place of work in a condition that is safe and without risks to health.</prevention-plan>
    </solution>
 
 
@@ -385,18 +404,18 @@ The XML document below demonstrates all elements documented here.
        <evaluation-optional>true</evaluation-optional>
 
        <profile-question>
-         <title>Mobile access</title>
-         <question>List your remote locations</question>
-         <description>&lt;p&gt;Working out of the office can introduce many
-           new risks that may not be under your direct control.&lt;/p&gt;
-         </description>
-
-         <module optional="yes">
-           <title>Laptops</title>
-           <question>Do your employees use laptops?</question>
-           <description>
-             &lt;p&gt;Laptops are very common in the modern workplace.&lt;/p&gt;
-           </description>
+          <title>Commercial manned guarding</title>
+          <question>Does your organisation provide commercial manned guarding?</question>
+          <description>This module focuses on &lt;strong&gt;commercial manned guarding&lt;/strong&gt;
+          </description>
+          <label-multiple-present>Do you offer this service in multiple locations?</label-multiple-present>
+          <label-single-occurance>Please enter a name for the location you would like to assess.</label-single-occurance>
+          <label-multiple-occurances>Please enter the name for each location you would like to assess.</label-multiple-occurances>
+         <module>
+            ...
+         </module>
+         <module>
+            ...
          </module>
        </profile-question>
 
@@ -412,19 +431,20 @@ The XML document below demonstrates all elements documented here.
          </solution-direction>
 
          <risk type="risk">
-           <title>Are your desks at the right height?</title>
+           <title>Lifts and escalators are in good condition and are properly maintained</title>
            <problem-description>
-             &lt;p&gt;Not all desks have the correct height.&lt;/p&gt;
+             &lt;p&gt;Lifts and escalators are not in good condition and might not be properly maintained.&lt;/p&gt;
            </problem-description>
            <description>
-             &lt;p&gt;The right height is important to prevent back problems.&lt;/p&gt;
+             &lt;p&gt;Lifts and escalators are essential to the smooth running of a building and to operate reliably they must be regularly maintained.&lt;/p&gt;&lt;p&gt;Lifts require regular lift maintenance to comply with the latest lift standards and legislation, to maintain performance levels and to minimise downtime on lifts and escalators.&lt;/p&gt;
            </description>
            <evaluation-method default-probability="small" default-frequency="regular"
               default-effect="high">calculated</evaluation-method>
            <solutions>
              <solution>
-               <description>Use height-adjustable desks</description>
-               <action-plan>Order height-adjustable desks for desk workers.</action-plan>
+               <description>Make sure that the building is in good condition and has the necessary facilities </description>
+               <action-plan>Reduce the risk by making sure that the building is in good condition and has the necessary facilities.</action-plan>
+               <prevention-plan>Properly maintain the place of work in a condition that is safe and without risks to health.</prevention-plan>
              </solution>
            </solutions>
          </risk>
