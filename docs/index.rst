@@ -20,9 +20,9 @@ About
 
 OIRA is a tool for risk assessment. It is developed by `SYSLAB`_ and `TNO`_
 in cooperation with `Simplon`_ and `Cornelis Kolbach`_ in commission of
-`The European Agency for Safety and Health at Work`_ as part of the
+`The European Agency for Safety and Health at Work`_ (EU-OSHA) as part of the
 `Healthy Workplaces`_ campaign. The software base package is called `Euphorie`_
-and is also used by the Dutch `RIE`_ project.
+and is also used by the Dutch `RIE`_ project. Adaptations of the software version that is used by EU-OSHA are found in the package `osha.oira <https://pypi.python.org/pypi/osha.oira>`_.
 
 .. _syslab: http://syslab.com/
 .. _TNO: http://www.tno.nl/index.cfm?Taal=2
