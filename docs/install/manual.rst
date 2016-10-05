@@ -6,8 +6,8 @@ Manual installation of OiRA
 OiRA is implemented as a set of add-on products for `Plone`_. The
 requirements for running an OiRA site are:
 
-* Plone 4.3 or later.
-* a SQL database
+* Plone 4.3
+* a SQL database (recommended: PostgreSQL)
 * two separate virtual hosts
 
 Development files required on the host operating system:
@@ -248,7 +248,7 @@ osha.oira product configuration. This can be done through buildout with the
         <product-config osha.oira>
             birt.report_url http://birt.oiraexample.com/birt/frameset?__pageoverflow=0&__asattachment=true&__overwrite=false&sector=%25
         </product-config>
-    
+
 
 
 

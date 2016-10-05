@@ -1,14 +1,7 @@
-API Documentation
-*****************
+Implementation
+**************
 
 This section contains a low level documentation of the code - modules, classes, methods and functions.
-
-.. todo::
-
-    Provide a docstring according to convention for every listed function in the api section.
-
-Packages
-========
 
 .. toctree::
    :maxdepth: 2
