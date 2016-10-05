@@ -7,12 +7,12 @@
 :mod:`OiRA` -- Online Interactive Risk Assessment tool
 ******************************************************
 
-ToDo List
-=========
+.. ToDo List
+.. =========
 
-This must be empty before we are done.
+.. This must be empty before we are done.
 
-.. todolist::
+.. .. todolist::
 
 
 About
