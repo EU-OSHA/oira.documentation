@@ -1,5 +1,5 @@
 Implementation
-**************
+==============
 
 This section contains a low level documentation of the code - modules, classes, methods and functions.
 
@@ -10,8 +10,8 @@ This section contains a low level documentation of the code - modules, classes, 
    oira/index
 
 
-Conventions
-===========
+Coding conventions
+==================
 
 .. note::
 

@@ -34,9 +34,6 @@ and is also used by the Dutch `RIE`_ project. Adaptations of the software versio
 .. _RIE: http://instrumenten.rie.nl/
 
 
-Introduction
-============
-
 The OiRA risk assessment tool is based on hierarchical questionnaires. A
 questionnaire (referred to as OIRA tool) covers most of the possible risks for a specific sector of
 industry.
@@ -60,19 +57,13 @@ Technical Information
 
    xml
 
-
-.. toctree::
-  :hidden:
-
-
-
-Implementation
-==============
-
 .. toctree::
    :maxdepth: 3
 
    implementation/index
+
+.. toctree::
+  :hidden:
 
 Indices and tables
 ==================
