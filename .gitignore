@@ -4,7 +4,6 @@ include/
 lib/
 local/
 pip-selfcheck.json
-Makefile
 make.bat
 html/
 doctrees/
