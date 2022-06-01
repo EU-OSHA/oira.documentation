@@ -11,32 +11,18 @@ Clone the package using git:
 git clone https://github.com/EU-OSHA/oira.documentation.git
 ```
 
-Create a virtual python environment, then activate it:
-
-```bash
-virtualenv .
-source bin/activate
-```
-
-Install the buildout requirements, then run buildout:
-
-```bash
-pip install -r requirements.txt
-bin/buildout
-```
-
-This will clone the necessary packages from git/mercurial.
-
 # Creating the documentation
 
-Switch to the build directory and run make:
+Run make:
 
 ```bash
-cd build
 make html
 ```
 
 The documentation is now available under `build/html`. 
+
+When running for the first time the make command will initialize a virtualenv and run buildout.
+This will install sphinx, clone the necessary packages and set everything else up.
 
 # Hosting the documentation
 
