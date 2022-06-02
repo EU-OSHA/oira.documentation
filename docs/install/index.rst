@@ -35,8 +35,9 @@ shows the packages that must be present in the *eggs* section of the
   [buildout]
   ...
   eggs =
-      Pillow
       osha.oira
+
+You may need to add eggs depending on the :ref:`sql_database` you are using.
 
 This will instruct Plone to install the OiRA software (and Euphorie on which it is based).
 Next you will need to add some *zcml* entries to load the necessary configuration as well::
@@ -45,10 +46,11 @@ Next you will need to add some *zcml* entries to load the necessary configuratio
   ...
   zcml =
       osha.oira
-      osha.oira-overrides
       euphorie.deployment-meta
       euphorie.deployment
       euphorie.deployment-overrides
+
+Again, additional configuration may be necessary for your :ref:`sql_database`.
 
 After making these two changes you must (re)run buildout and restart your Zope
 instance. Navigate to your ``zinstance`` directory and type::
@@ -67,42 +69,28 @@ see the article `installing an add-on product`_ in the Plone knowledge base.
 Configuration
 -------------
 
-Euphorie uses `z3c.appconfig <http://pypi.python.org/pypi/z3c.appconfig>`_ to
-handle application configuration. All values are stored in the ``euphorie``
-section. For example::
-
-  [euphorie]
-  client=http://oira.example.com
-
-You need to tell buildout where to find this configuration::
-
-  environment-vars =
-    APPCONFIG ${buildout:directory}/etc/euphorie.ini
+Euphorie uses the Plone registry to handle application configuration. All values use the prefix ``euphorie``.
 
 Some notable options are:
 
-   +------------------------------+-----------------------------------------------+
-   | options                      | Description                                   |
-   +==============================+===============================================+
-   | ``client``                   | URL for the client (see also                  |
-   |                              | `Virtual hosting`_).                          |
-   +------------------------------+-----------------------------------------------+
-   | ``library``                  | Path (inside Plone) to a sector that          |
-   |                              | should be used as the Library of OiRA  tools. |
-   +------------------------------+-----------------------------------------------+
-   | ``max_login_attempts``       | Number: after how many failed login attempts  |
-   |                              | in the client the user account gets locked.   |
-   +------------------------------+-----------------------------------------------+
-   | ``allow_guest_accounts``     | Boolean: If enabled the feature for guest     |
-   |                              | login is available in the client.             |
-   +------------------------------+-----------------------------------------------+
-   | ``allow_user_defined_risks`` | Boolean: If enabled the feature for creating  |
-   |                              | custom riks is available in the client.       |
-   +------------------------------+-----------------------------------------------+
-   | ``smartprintng_url``         | URL (including port) of the service used for  |
-   |                              | creating PDF prints                           |
-   |                              | (see also `PDF printing`_).                   |
-   +------------------------------+-----------------------------------------------+
+   +---------------------------------------+-----------------------------------------------+
+   | options                               | Description                                   |
+   +=======================================+===============================================+
+   | ``euphorie.client_url``               | URL for the client (see also                  |
+   |                                       | `Virtual hosting`_).                          |
+   +---------------------------------------+-----------------------------------------------+
+   | ``euphorie.library``                  | Path (inside Plone) to a sector that          |
+   |                                       | should be used as the Library of OiRA  tools. |
+   +---------------------------------------+-----------------------------------------------+
+   | ``euphorie.max_login_attempts``       | Number: after how many failed login attempts  |
+   |                                       | in the client the user account gets locked.   |
+   +---------------------------------------+-----------------------------------------------+
+   | ``euphorie.allow_guest_accounts``     | Boolean: If enabled the feature for guest     |
+   |                                       | login is available in the client.             |
+   +---------------------------------------+-----------------------------------------------+
+   | ``euphorie.allow_user_defined_risks`` | Boolean: If enabled the feature for creating  |
+   |                                       | custom riks is available in the client.       |
+   +---------------------------------------+-----------------------------------------------+
 
 Google analytics
 ----------------
@@ -222,38 +210,24 @@ You will also need to configure the URL for the client in the ``euphorie.ini`` f
   client=http://client.oiraexample.com
 
 
-.. _pdf_printing:
-
-PDF printing
-------------
-
-For creating nicely formatted PDF reports in the client, the external component
-`zopyx.smartprintng.server`_ is used. It makes the PDF converting functionality
-of `Prince XML`_ available via a web server. The URL of this service must be present
-in `euphorie.ini`::
-
-  [euphorie]
-  smartprintng_url=http://123.45.67.89:6543
-
-
 .. _usage_statistics:
 
 Usage Statistics
 ----------------
 
-To generate usage statistics reports an `Apache Tomcat`_ server with the `BIRT`_
-webapp needs to be set up. It must be configured to serve the reports in the
-`oira.reports`_ package. Its base URL needs to be made available via the
-osha.oira product configuration. This can be done through buildout with the
-`zope-conf-additional` option::
+To generate usage statistics reports a `Metabase`_ server needs to be set up.
+It must be configured using `oira.statistics.deployment`_. Its SQL database URL
+needs to be made available via the osha.oira product configuration. This can be
+done through buildout with the `zope-conf-additional` option::
 
     [instance]
     ...
     zope-conf-additional =
         <product-config osha.oira>
-            birt.report_url http://birt.oiraexample.com/birt/frameset?__pageoverflow=0&__asattachment=true&__overwrite=false&sector=%25
+            postgres-url-statistics postgresql://XXXX:XXXX@localhost/{database}
         </product-config>
 
+Do not replace the `{database}` placeholder. This is done by the application on-the-fly.
 
 
 
@@ -265,6 +239,5 @@ osha.oira product configuration. This can be done through buildout with the
 .. _psycopg: http://initd.org/psycopg/
 .. _zopyx.smartprintng.server: https://pypi.python.org/pypi/zopyx.smartprintng.server
 .. _Prince XML: http://www.princexml.com/
-.. _oira.reports: https://github.com/EU-OSHA/oira.reports
-.. _Apache Tomcat: http://tomcat.apache.org/tomcat-6.0-doc/index.html
-.. _BIRT: http://www.eclipse.org/birt/documentation/
+.. _oira.statistics.deployment: https://github.com/EU-OSHA/oira.statistics.deployment
+.. _Metabase: https://www.metabase.com/
