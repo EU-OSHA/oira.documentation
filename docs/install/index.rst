@@ -7,21 +7,237 @@ requires a number of different components. Apart from the basic Plone installati
 this includes the web-server and caching setup, as well as external components
 used for creating PDF files or reports of usage statistics.
 
-To get an overview of the different components and their basic installation,
-please refer to :ref:`manual_installation`.
 
-Getting all components to work together seamlessly, spread over different
-(virtual) hosts, is not trivial, especially if the required configuration is
-kept in many different locations. Therefore, the production and staging installation
-of OiRA make use of the configuration- and deployment tool `batou`_. This is
-described in :ref:`batou`.
+OiRA is implemented as a set of add-on products for `Plone`_. The
+requirements for running an OiRA site are:
+
+* Plone 4.3
+* a SQL database (recommended: PostgreSQL)
+* two separate virtual hosts
+
+Development files required on the host operating system:
+
+* libffi (Foreign Function Interface library development files)
+
+e.g. on Debian/Ubuntu: ``sudo apt-get install libffi-dev``
+
+.. _plone_installation:
+
+Plone installation
+------------------
+
+Since OiRA can only run on top of Plone, the installation configuration for the
+client and admin interface is based on a `Plone buildout`_. The following listing
+shows the packages that must be present in the *eggs* section of the
+``buildout.cfg`` configuration file::
 
 
-.. toctree::
-   :maxdepth: 2
+  [buildout]
+  ...
+  eggs =
+      osha.oira
 
-   manual
-   batou/index
+You may need to add eggs depending on the :ref:`sql_database` you are using.
+
+This will instruct Plone to install the OiRA software (and Euphorie on which it is based).
+Next you will need to add some *zcml* entries to load the necessary configuration as well::
+
+  [instance]
+  ...
+  zcml =
+      osha.oira
+      euphorie.deployment-meta
+      euphorie.deployment
+      euphorie.deployment-overrides
+
+Again, additional configuration may be necessary for your :ref:`sql_database`.
+
+After making these two changes you must (re)run buildout and restart your Zope
+instance. Navigate to your ``zinstance`` directory and type::
+
+    $ bin/buildout
+    $ bin/instance restart
+
+A new *Euphorie website* option should now appear in the list of add-on products
+in your Plone control panel. Installing this will setup Euphorie in your site.
+Addtionally you will then need to install the package "osha.oira" to get the
+OiRA-specific customisations.
+
+For more information on installing add-on products in your Plone site please
+see the article `installing an add-on product`_ in the Plone knowledge base.
+
+Configuration
+-------------
+
+Euphorie uses the Plone registry to handle application configuration. All values use the prefix ``euphorie``.
+
+Some notable options are:
+
+   +---------------------------------------+-----------------------------------------------+
+   | options                               | Description                                   |
+   +=======================================+===============================================+
+   | ``euphorie.client_url``               | URL for the client (see also                  |
+   |                                       | `Virtual hosting`_).                          |
+   +---------------------------------------+-----------------------------------------------+
+   | ``euphorie.library``                  | Path (inside Plone) to a sector that          |
+   |                                       | should be used as the Library of OiRA  tools. |
+   +---------------------------------------+-----------------------------------------------+
+   | ``euphorie.max_login_attempts``       | Number: after how many failed login attempts  |
+   |                                       | in the client the user account gets locked.   |
+   +---------------------------------------+-----------------------------------------------+
+   | ``euphorie.allow_guest_accounts``     | Boolean: If enabled the feature for guest     |
+   |                                       | login is available in the client.             |
+   +---------------------------------------+-----------------------------------------------+
+   | ``euphorie.allow_user_defined_risks`` | Boolean: If enabled the feature for creating  |
+   |                                       | custom riks is available in the client.       |
+   +---------------------------------------+-----------------------------------------------+
+
+Google analytics
+----------------
+
+Euphorie includes complete Google Analytics support. However due to data protection
+regulations, this feature is not available in OiRA.
+
+.. _piwik:
+
+Web analytics (Piwik)
+---------------------
+
+`Plone by default can be configured <http://docs.plone.org/adapt-and-extend/config/site.html>`_
+to include a block of Javascript code on every page for logging information to a
+web analytics tool such as Piwik. The OiRA client and admin interface make use of
+this option. That means to enable Piwik tracking, the appropriate Javascript (available
+from the Piwik installation) needs to be pasted into the field "Javascript for
+web statistics support" of the Plone installation.
 
 
-.. _batou: https://batou.readthedocs.io/en/latest/
+.. _sql_database:
+
+SQL database
+------------
+
+OIRA uses a SQL database to store information for users of the client. Any
+SQL database supported by SQLAlchemy_ should work. If you have selected a
+database you will need to configure it in ``buildout.cfg``. For example if
+you use postgres you will first need to make sure that the psycopg_ driver
+is installed by adding it to the *eggs* section::
+
+  [buildout]
+  ...
+  eggs =
+      osha.oira
+      psycopg2
+
+Next you need to configure the database connection information. This requires
+a somewhat verbose statement in the *instance* section of ``buildout.cfg``::
+
+  [instance]
+  zcml-additional =
+     <configure xmlns="http://namespaces.zope.org/zope"
+                xmlns:db="http://namespaces.zope.org/db">
+         <include package="z3c.saconfig" file="meta.zcml" />
+         <db:engine name="session" url="postgres:///euphorie" />
+         <db:session engine="session" />
+     </configure>
+
+Make sure the ``url`` parameter is correct for the database you want to use.
+It uses the standard SQLAlchemy connection URI format.
+
+To set up the database you must run buildout and run the database initialisation
+command::
+
+    $ bin/buildout
+    $ bin/instance initdb
+
+
+.. _virtual_hosting:
+
+Virtual hosting
+---------------
+
+Euphorie requires two separate virtual hosts: one host for the client, and one
+for CMS tasks. It is common to use ``client`` as hostname for the client (e.g.
+``client.oiraexample.com``) and ``admin`` as hostname for the CMS (e.g.
+``admin.oiraexample.com``). The standard method for configuring virtual hosting
+for Plone sites apply here as well. Here is an example nginx configuration::
+
+  server {
+      listen *:80;
+      server_name admin.oiraexample.com;
+
+      proxy_read_timeout 360;
+      client_max_body_size 50m;
+      proxy_set_header Host $http_host;
+
+        location ~ ^(.*)$ {
+            rewrite ^(.*)$ /VirtualHostBase/$scheme/admin.oiraexample.com:$server_port/Plone2/VirtualHostRoot$1;
+            proxy_pass http://localhost:8002;
+            break;
+        }
+  }
+
+  server {
+      listen *:80;
+      server_name client.oiraexample.com;
+
+      proxy_read_timeout 360;
+      client_max_body_size 50m;
+      proxy_set_header Host $http_host;
+
+      proxy_read_timeout 360;
+      client_max_body_size 50m;
+      proxy_set_header Host $http_host;
+
+      location ~ ^/$ {
+          # override to make the redirect work for the start page
+          proxy_set_header Host admin.oiraexample.com;
+          rewrite ^/$ /documents/en/homepage/ break;
+          proxy_pass https://admin.oiraexample.com;
+      }
+
+      location ~ ^(.*)$ {
+          rewrite ^(.*)$ /VirtualHostBase/$scheme/client.oiraexample.com:$server_port/Plone2/client/VirtualHostRoot$1;
+          proxy_pass http://localhost:8002;
+          break;
+      }
+    }
+
+
+
+You will also need to configure the URL for the client in the ``euphorie.ini`` file::
+
+  [euphorie]
+  client=http://client.oiraexample.com
+
+
+.. _usage_statistics:
+
+Usage Statistics
+----------------
+
+To generate usage statistics reports a `Metabase`_ server needs to be set up.
+It must be configured using `oira.statistics.deployment`_. Its SQL database URL
+needs to be made available via the osha.oira product configuration. This can be
+done through buildout with the `zope-conf-additional` option::
+
+    [instance]
+    ...
+    zope-conf-additional =
+        <product-config osha.oira>
+            postgres-url-statistics postgresql://XXXX:XXXX@localhost/{database}
+        </product-config>
+
+Do not replace the `{database}` placeholder. This is done by the application on-the-fly.
+
+
+
+.. _Plone: http://plone.org/
+.. _Plone buildout: http://docs.plone.org/4/en/old-reference-manuals/buildout/index.html
+.. _download: http://plone.org/download
+.. _installing an add-on product: http://docs.plone.org/4/en/manage/installing/installing_addons.html
+.. _SQLAlchemy: http://www.sqlalchemy.org/
+.. _psycopg: http://initd.org/psycopg/
+.. _zopyx.smartprintng.server: https://pypi.python.org/pypi/zopyx.smartprintng.server
+.. _Prince XML: http://www.princexml.com/
+.. _oira.statistics.deployment: https://github.com/EU-OSHA/oira.statistics.deployment
+.. _Metabase: https://www.metabase.com/

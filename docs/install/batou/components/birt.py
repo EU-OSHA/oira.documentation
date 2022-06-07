@@ -1,1 +1,0 @@
-../../../../src/oira.batou/components/birt/component.py
