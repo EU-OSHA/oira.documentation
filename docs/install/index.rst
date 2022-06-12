@@ -11,22 +11,16 @@ used for creating PDF files or reports of usage statistics.
 OiRA is implemented as a set of add-on products for `Plone`_. The
 requirements for running an OiRA site are:
 
-* Plone 4.3
+* Plone 5.2
 * a SQL database (recommended: PostgreSQL)
 * two separate virtual hosts
-
-Development files required on the host operating system:
-
-* libffi (Foreign Function Interface library development files)
-
-e.g. on Debian/Ubuntu: ``sudo apt-get install libffi-dev``
 
 .. _plone_installation:
 
 Plone installation
 ------------------
 
-Since OiRA can only run on top of Plone, the installation configuration for the
+Since OiRA runs on top of Plone, the installation configuration for the
 client and admin interface is based on a `Plone buildout`_. The following listing
 shows the packages that must be present in the *eggs* section of the
 ``buildout.cfg`` configuration file::
