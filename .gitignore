@@ -13,3 +13,5 @@ src/
 parts/
 *.pyc
 .*.sw[op]
+share/
+eggs/

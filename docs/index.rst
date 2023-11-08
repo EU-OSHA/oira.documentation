@@ -1,74 +1,74 @@
-.. OiRA Documentation documentation master file, created by
-   sphinx-quickstart on Tue Jun  7 15:56:51 2016.
-
 .. _index:
 
-******************************************************
-:mod:`OiRA` -- Online Interactive Risk Assessment tool
-******************************************************
+*************************************************
+:mod:`OiRA` -- Online interactive Risk Assessment
+*************************************************
 
-.. ToDo List
-.. =========
+Welcome
+=======
 
-.. This must be empty before we are done.
+Welcome to the OiRA documentation site. We are constantly updating this site in order to provide a comprehensive reference point for the OiRA application.
 
-.. .. todolist::
+Please check the site regularly for any updates.
 
+The site is currently available in the following languages:
 
-About
-=====
-
-OIRA is a tool for risk assessment. It is developed by `SYSLAB`_ and `TNO`_
-in cooperation with `Simplon`_ and `Cornelis Kolbach`_ in commission of
-`The European Agency for Safety and Health at Work`_ (EU-OSHA) as part of the
-`Healthy Workplaces`_ campaign. The software base package is called `Euphorie`_
-and is also used by the Dutch `RIE`_ project. Adaptations of the software version that is used by EU-OSHA are found in the package `osha.oira <https://pypi.python.org/pypi/osha.oira>`_.
-
-.. _syslab: http://syslab.com/
-.. _TNO: http://www.tno.nl/index.cfm?Taal=2
-.. _Simplon: http://www.simplon.biz/
-.. _Cornelis Kolbach: http://www.cornae.com
-.. _The European Agency for Safety and Health at Work: http://osha.europa.eu/en/
-.. _Healthy Workplaces: http://osha.europa.eu/en/campaigns/hw2008
-.. _Euphorie: https://pypi.python.org/pypi/Euphorie/
-.. _RIE: http://instrumenten.rie.nl/
+.. include:: languagenav.rst
 
 
-The OiRA risk assessment tool is based on hierarchical questionnaires. A
-questionnaire (referred to as OIRA tool) covers most of the possible risks for a specific sector of
-industry.
+About OiRA
+==========
 
-Each sector organisation can have one or more OiRA tools published simultaneously.
-In order to facilitate development and testing of OIRA tools the system supports
-multiple versions for OiRA tools. Only a single version of an OiRA tool can be public
-at any point in time.
+OiRA (Online interactive Risk Assessment) is a comprehensive, easy to use and cost-free web application.
+
+It helps micro and small organisations to put in place a thorough step-by-step risk assessment process – from the identification and evaluation of workplace risks, through decision making on preventive actions and the completion of these actions, to continued monitoring and reporting.
 
 
-Technical Information
-=====================
-
-.. toctree::
-   :maxdepth: 2
-
-   install/index
+Manuals
+=======
 
 .. toctree::
    :maxdepth: 1
 
-   xml
+   Welcome <self>
+   manuals/install
+   Creation Guide <manuals/creation-guide>
+   Editors Manual <manuals/editor2>
+   Admin Manual <manuals/admin>
+
+.. THIS IS A COMMENT; DO NOT TRANSLATE
+   To make the hoster happy, we list all files that we need, but don't want in any toctree below.
+   This will prevent warning messages.
+   END OF COMMENT
 
 .. toctree::
-   :maxdepth: 3
+   :hidden:
 
-   implementation/index
+   languagenav
+   index_bg
+   index_ca
+   index_cs
+   index_de
+   index_el
+   index_es
+   index_fi
+   index_fr
+   index_hu
+   index_is
+   index_it
+   index_lt
+   index_lv
+   index_nl_be
+   index_mt
+   index_pt
+   index_sk
+   index_sl
+   index_sv
+   manuals/why
+   manuals/client
 
-.. toctree::
-  :hidden:
 
 Indices and tables
 ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
-
